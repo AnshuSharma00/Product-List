@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product List with Filter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .filter-box {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    select {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+    .product-card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+    .product-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+    }
+    .product-name {
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .price {
+      color: #27ae60;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Product Board</h2>
+
+  <div class="filter-box">
+    <label for="category">Filter by Category: </label>
+    <select id="category" onchange="filterProducts()">
+      <option value="all">All</option>
+      <option value="electronics">Electronics</option>
+      <option value="clothing">Clothing</option>
+      <option value="furniture">Furniture</option>
+    </select>
+  </div>
+
+  <div class="product-list" id="product-list">
+    <div class="product-card" data-category="electronics">
+      <img src="https://via.placeholder.com/120" alt="Laptop">
+      <div class="product-name">Laptop</div>
+      <div class="price">$900</div>
+    </div>
+    <div class="product-card" data-category="electronics">
+      <img src="https://via.placeholder.com/120" alt="Headphones">
+      <div class="product-name">Headphones</div>
+      <div class="price">$50</div>
+    </div>
+    <div class="product-card" data-category="clothing">
+      <img src="https://via.placeholder.com/120" alt="T-shirt">
+      <div class="product-name">T-shirt</div>
+      <div class="price">$15</div>
+    </div>
+    <div class="product-card" data-category="clothing">
+      <img src="https://via.placeholder.com/120" alt="Jacket">
+      <div class="product-name">Jacket</div>
+      <div class="price">$70</div>
+    </div>
+    <div class="product-card" data-category="furniture">
+      <img src="https://via.placeholder.com/120" alt="Chair">
+      <div class="product-name">Chair</div>
+      <div class="price">$120</div>
+    </div>
+    <div class="product-card" data-category="furniture">
+      <img src="https://via.placeholder.com/120" alt="Table">
+      <div class="product-name">Table</div>
+      <div class="price">$250</div>
+    </div>
+  </div>
+
+  <script>
+    function filterProducts() {
+      let category = document.getElementById("category").value;
+      let products = document.querySelectorAll(".product-card");
+
+      products.forEach(product => {
+        if (category === "all" || product.dataset.category === category) {
+          product.style.display = "block";
+        } else {
+          product.style.display = "none";
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
